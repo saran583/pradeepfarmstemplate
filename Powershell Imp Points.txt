@@ -1,0 +1,87 @@
+
+
+Hypervisor- A software or hardware that creates and runs virtual machines
+                   
+	 A computer which runs the virtual machine is called a Host
+                   
+	 A virtual m achine is called  a guest machine
+
+These are divided into 2 types
+	 
+          Type1-Much of a operating system like a dual boot
+
+	           Type2-Like a program which runs on the operating system
+
+
+
+Powershell has 4 different versions.they are:
+
+          Powershell Console- Used for administrative tasks both and locally and remote
+
+          Elevated Console
+
+          x86 Console - This is for running power shell remotely which are 32bit not 64 bit
+ 
+          Power Shell ISE - Allows both immediate tasks and administration and allows to 
+		    write scripts for repetition or automation of tasks.
+ 
+
+
+
+Scenario-1: Suppose we have a system which cannot connect to the internet but the powershell 
+	 help should be updated but you have another system with internet. what do you do?
+
+Solution:The updated help can be saved to a file and can be updated by sending it into the req system
+
+              Step1: Run Update-Help in the internet connected system and update the packages
+
+              Step2: Now save the updated packages into a directory using Save-Help it asks for a destination 
+	       if you want to save in the same directory enter .\ and click enter
+
+              Step3: All the updated packages should be saved into the current directory by now check by 
+                         entering dir or dir | measure to count the number of files.
+
+              Step4: now Copy the directory to the system and Run "Update-Help -SourcePath .\"
+
+              Step5: And therefore it is done.
+
+
+
+Note: Aliases can be used instead of using the whole command.
+
+          PowerShell Uses .Net Framework at its core.
+
+
+          Powershell can identify the values gb and can execut the query
+
+Scenario2:Run notepad and stop the process 
+
+Solution:Step1:Run  the cmdlet "notepad" which starts the process
+
+              Step2:Stop the process using stop-process -name notepad"
+
+              Step3:Here we go...
+
+
+
+PSProviders- These are used to define the logic that is used to access, navigate or edit a datastore, 
+	    It is the many providers like Filesystem,Aliases,Registry,Environment,etc
+
+
+
+PSDrives- These provide a entry point to the datastore, and uses the providers for standard logic, 
+	PSDrives are used to provide a entry point or a shortcut into the providers.
+
+$sign added before a variable to make powershell understand that it is a variable
+
+Scenario3:Get the free space of all the drives and display the data of only name and 
+                  freespace and then a new column with the free space in gb
+Solution: It is done by executing a query
+              Step1: Gives the specific values Name and Freespace 
+                   -->Get-WmiObject win32_logicaldisk | Select-Object DeviceID, FreeSpace
+                          
+              Step2: By adding a query we can get the new column In GB  
+                   -->Get-WmiObject win32_logicaldisk | Select-Object DeviceID, FreeSpace, 
+                        @{name="In GB"; Expression={$_.FreeSpace/1GB}}
+
+

@@ -1,0 +1,91 @@
+Update-Help is used to update the help cmdlet with the get updated info for all the commands 
+
+Save-Help -- Saves all the updated help in current directory
+
+new-item -Path c:\somename -ItemType Directory -- To create a new directory
+
+.\ -- for current directory
+
+dir -- displays files in the directory
+
+dir | measure -- give count of files in the directory
+
+cls -- clear screen
+
+Get-Help service -- to find a cmdlet which has a word, this cmdlet returns every cmdlet which contains service
+
+get-command *service* -- Same as Get-help service but also returns functions which contains service with description
+
+show-command get-service --gives a gui window with details like on which computer , include, exclude,etc
+
+measure-command {} -- measure how long it took, best for comparing two different commands
+
+get-alias gsv --used to get the name of the alias
+
+get-alias -Definition get-service --used to get the alias for the name
+
+get-help new-item -full -- gets the total help content of the particular cmdlet
+
+get-help new-item -online -- opens a online window ad shows help for the given cmdlet
+
+get-help new-item -example -- No need to explain
+
+copy-item -Path "\somewhere\file.txt" -Destination "\somewhere" -- Copies the given file from path to destination "Parameters are not required if you give the correct positions"
+
+appending -Confirm -- Gets Confirmation from the user before performing any task.
+
+appending -Whatif -- Tells you what happens if you execute that specific cmdlet
+
+get-childitem -Recurse -- Gives the files or folders present in the current directory and "Recurse" gives u the sub directory details also like the files or folders in the sub-directories
+
+get-PSProvider -- returns the providers and drives like Registry,Environment,Filesystem
+
+new-PSDrive -name some -PSProvider Filesystem -root C:\examples\ -- creates a new gateway into the PSProviders
+
+Set-ItemProperty -- Set the value of a property. example:PS HKCU:\> set-itemproperty -path HKCU:\Software\SS64 -name '(Default)' -value 'abc123'
+
+Get-Variable -- To get the variables in the pwd
+
+New-Variable cat -value somevalue -- creates a new variable and assigns the value
+
+Remove-Variable cat -- Removes the given variable
+
+new-item c:\test.txt -- For creating a new file
+
+new-item c:\test1.txt, c:\test2.txt -- to create multiple files at a time
+
+Get-Item * | Select-Object Name,Length -- Query to get all the items in the pwd and pass it to the select object to select only the required columns.
+
+ni text.txt -value "Something " -- Creates a new file and writes data into it
+
+Get-Item * | Select-Object Name,Length | Sort-Object -descending -- Sorts the results in a descending order
+
+Get-Item * | Select-Object Name,Length | Sort-Object -descending -property Length -- Sorts according to the property length in descending (remove descending if you want ascending)
+
+ Get-WmiObject win32_logicaldisk | Select-Object DeviceID, FreeSpace -- To get freeSpace in all the drives
+
+Get-WmiObject win32_logicaldisk | Select-Object DeviceID, FreeSpace, @{name="In GB"; Expression={$_.FreeSpace/1GB}} -- To execute queries and convert the the freespace to gb
+
+Get-WmiObject cim_printer | where name -ne $null | Select-Object name,PrinterStatus -- Get the details of the printers connected to the system whose name is not null and display only 	 
+                                                                                                                                              name and printer status
+
+Get-ChildItem | where name -like "S*" -- Returns the files or folders starting with S 
+
+dir * |select name , length | sort -de |Out-File .\test.txt -- get the output and store it in a text file
+
+get-Content .\test.txt -- get the content in a specific file
+
+ dir * |select name , length | sort -de |Out-GridView -- get the output in a window containing options to edit and add criterias
+
+dir * |select name , length | sort -de |Out-Printer -Name "microsoft print to pdf" -- Returning the output to a pdf file which gives a popup to get the name
+
+dir * |select name , length | sort -de |Out-Printer -- Print the details
+
+Invoke-Command -ComputerName dc -ScriptBlock {Get-ChildItem -Path C:\} -- For executing a command on the remote system
+
+Get-Service bits -ComputerName dc -- returns details from the remote computer
+
+
+
+
+
